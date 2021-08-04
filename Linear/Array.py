@@ -4,9 +4,11 @@
 a = list()
 a = []
 
+# 추가, 추출, 탐색, 삭제 구현 
 # Python에선 list에 대한 다양한 function, method가 구현되어 있다.
-# 삽입(추가), 삭제(추출), 조회 구현 
 list_test = [1, 2, 3]
+elem = 4
+i = len(list_test)
  
 # 시간 복잡도가 O(1)인 연산 
 # 추가
@@ -15,7 +17,7 @@ list_test.append(elem)
 # 추출
 # pop -> 마지막 요소 추출
 list_test.pop()
-# 조회
+# 탐색
 # [i] -> 원하는 위치의 요소 값 반환
 list_test[i]
 
@@ -26,7 +28,3 @@ list_test.insert(i, elem)
 # 삭제
 # del -> 원하는 위치의 요소 삭제
 del list_test[i]
-# 조회
-# index ->  원하는 요소의 인덱스를 반환
-list_test.index(elem)
-
