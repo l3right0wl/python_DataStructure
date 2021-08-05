@@ -1,79 +1,112 @@
 # Linked List
-# 연결 리스트 구현
+# Singly Linked List 구현
 # Python의 경우 list 기본 자료형에 linked list 기능이 함께 포함되어 있다.
+# 시작 위치를 1로 잡음
 
+# Node 클래스 선언
 class Node:
-    def __init__(self, val):
-        self.data = val
+    def __init__(self, data):
+        self.data = data
         self.next = None
 
-
+# Singly Linked List 클래스 선언
 class LinkedList:
-    def __init__(self, val):
-        self.head = Node(val)
+    def __init__(self):
+        self.head = None
+        self.count = 0
 
-    def add(self, val):
-        cur = self.head
-        while cur.next is not None:
-            cur = cur.next
-        cur.next = Node(val)
-
-    def remove(self, val):
-        if self.head.data == val:
-            self.head = self.head.next
+    # 추가 (마지막 값)
+    def add(self, node):
+        if self.head is None:
+            self.head = node
         else:
             cur = self.head
             while cur.next is not None:
-                if cur.data == val:
-                    self.remove_change_next(val)
-                    return
                 cur = cur.next
-            print(val, "does not exist in linked list")
+            cur.next = node
+        self.count += 1
 
-    def remove_change_next(self, val):
+    # 추출 (마지막 값)
+    def pop(self):
         cur = self.head
         while cur.next is not None:
-            if cur.next.data == val:
-                nextNode = cur.next.next
-                cur.next = nextNode
-                break
-
-    def printlist(self):
-        cur = self.head
-        while cur is not None:
-            print(cur.data, '->', end=" ")
             cur = cur.next
-        if cur is None:
-            print("empty")
+        self.count -= 1
+        return cur.data
 
-    def size(self):
-        count = 0
+    # 탐색
+    def search(self, node):
+        idx = 0
         cur = self.head
-        while cur:
-            count += 1
-            cur = cur.next
-        return count
-
-# 다시
-    def search(self, val):
-        check = self.head
-        for i in range(self.size()):
-            if check.data == val:
-                print("The data is at the {} index".format((i+1)))
+        for i in range(self.count):
+            if cur.data == node.data:
+                print("{} 번째 위치해있습니다".format(idx+1))
                 return None
-            check = check.next
-        print(val, "does not exist in linked list")
+            else:
+                cur = cur.next
+                idx += 1
         return None
 
-linked = LinkedList(2)
+    # 출력
+    def printlist(self):
+        strs = ''
+        cur = self.head
+        while cur:
+            strs += str(cur.data)
+            if cur.next:
+                strs += "->"
+            cur = cur.next
+        print(strs)
 
-linked.add(3)
-linked.add(4)
-linked.add(5)
-linked.printlist()
+    # 길이
+    def length(self):
+        return self.count
 
-linked.remove(3)
-linked.printlist()
+    # 원하는 위치 추가
+    def insert(self, idx, node):
+        pre = None
+        cur = self.head
+        cur_i = 1
 
-linked.search(6)
-print(linked.size())
+        if idx == 1:
+            if self.head:
+                nextNode = self.head
+                self.head = node
+                self.head.next = nextNode
+            else:
+                self.head = node
+        else:
+            while cur_i < idx:
+                if cur:
+                    pre = cur
+                    cur = cur.next
+                else:
+                    break
+                cur_i += 1
+            if cur_i == idx:
+                pre.next = node
+                node.next = cur
+        self.count += 1
+        return None
+
+    # 원하는 위치 삭제
+    def delete(self, idx):
+        pre = None
+        cur = self.head
+        cur_i = 1
+
+        if idx == 1:
+            self.head = cur.next
+
+        while cur_i < idx:
+            if cur:
+                pre = cur
+                cur = cur.next
+            else:
+                break
+            cur_i += 1
+
+            if cur_i == idx:
+                pre.next = cur.next
+        self.count -= 1
+        return None

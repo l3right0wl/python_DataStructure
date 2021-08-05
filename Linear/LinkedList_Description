@@ -1,6 +1,7 @@
 선형 자료 구조
 연결 리스트 ( Linked List )
-포인터 기반의 연결 방식 => ㅁ -> ㅁ -> ㅁ -> ㅁ
+노드들이 연결되어 있는 포인터 기반의 연결 방식 => ㅁ -> ㅁ -> ㅁ -> ㅁ
+p.s. 노드는 데이터와 다음 노드를 가르키는 포인터를 담은 구조로 이루어짐
 
 Python = 동적 프로그래밍 언어(Dynamic Programming Language)
 동적으로 새로운 노드를 삽입하거나 삭제하기가 간편하며,
@@ -11,6 +12,7 @@ Python = 동적 프로그래밍 언어(Dynamic Programming Language)
 (시작 또는 끝지점에 아이템)추가, 추출, 삭제 : O(1)
 탐색 : O(n)
 
-Singly Linked List (단일 연결 리스트)
-Doubly Linked List (이중 연결 리스트)
-Circular Linked List (환형 연결 리스트)
+연결되는 방향에 따른 Linked List
+1. Singly Linked List (단일 연결 리스트)
+2. Doubly Linked List (이중 연결 리스트)
+3. Circular Linked List (환형 연결 리스트)
