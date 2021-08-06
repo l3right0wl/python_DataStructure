@@ -31,7 +31,6 @@ class LinkedList:
         cur = self.head
         while cur.next is not None:
             cur = cur.next
-        self.count -= 1
         return cur.data
 
     # 탐색
