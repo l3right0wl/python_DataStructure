@@ -14,3 +14,6 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+# 변수 : 자료형 참조 
+https://blog.naver.com/PostView.nhn?blogId=passion053&logNo=221070020739&categoryNo=27&parentCategoryNo=26&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
