@@ -1,6 +1,6 @@
 # Linked List
 # Singly Linked List 구현
-# Python의 경우 list 기본 자료형에 linked list 기능이 함께 포함되어 있다.
+# Python의 경우 list 기본 자료형에 linked list 기능이 함께 포함되어 있지만 직접 구현했다.
 # 시작 위치를 1로 잡음
 
 # Node 클래스 선언
