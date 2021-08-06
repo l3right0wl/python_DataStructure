@@ -37,7 +37,7 @@ class LinkedList:
     def search(self, node):
         idx = 0
         cur = self.head
-        for i in range(self.count):
+        while cur:
             if cur.data == node.data:
                 print("{} 번째 위치해있습니다".format(idx+1))
                 return None
