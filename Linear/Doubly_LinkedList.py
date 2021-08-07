@@ -102,7 +102,36 @@ class LinkedList:
                 return
     # 원하는 위치에 삭제
     def remove_idxdata(self, idx):
-        pass
+        prevn = None
+        nextn = None
+        cur_i = 1
+        
+        if idx == 1:
+            if self.head:
+                self.head = self.head.next
+                self.head.prev = None
+                return None
+        else:
+            return None
+            
+        cur = self.head
+        while cur_i < idx:
+            if cur.next:
+                
+                prevn = cur
+                cur = cur.next
+                nextn = cur.next
+            else:
+                return 
+            cur_i += 1
+
+        if cur_i == idx:
+            if nextn:
+                nextn.prev = prevn
+            prev.next = nextn
+            
+        self.count -= 1
+        return None
   
 
 ll = LinkedList()
