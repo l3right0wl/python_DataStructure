@@ -1,59 +1,87 @@
 # Linked List
-# Doubly Linked List 구현
-# Python의 경우 list 기본 자료형에 linked list 기능이 함께 포함되어 있지만 직접 구현했다.
-# 시작 위치를 1로 잡음
+# Implement Doubly Linked List
+# Set start to 0
 
+# Declare node class
+# The node has 1 data and 2 pointer
 class Node:
     def __init__(self, data):
         self.prev = None
         self.data = data
         self.next = None
-    
+
+# Declare Doubly Linked List Class
 class LinkedList:
+    # Set start and end
+    # cause bidirectional
     def __init__(self):
-      self.head = None
-      self.count = 0
+        self.head = None
+        self.tail = None
+        self.count = 0
       
-    # 추가 (마지막 값)
+    # Add node at last
     def add(self, node):
-        if self.head:
+        if self.head is None:
+            self.head = node
+            self.tail = self.head
+        else:
             cur = self.head
             while cur.next is not None:
                 cur = cur.next
             cur.next = node
             node.prev = cur
-                
-        else:
-            self.head = node
+            self.tail = cur.next
         self.count += 1
-    # 추출 (마지막 값)
+
+    # Pop node at last
     def pop(self):
-        cur = self.head
+        prevn = None
+
         if self.head:
+            cur = self.head
             while cur.next is not None:
+                prevn = cur
                 cur = cur.next
+            # Disconnect previous node
+            if cur.next is None:
+                prevn.next = None
+                self.tail = prevn
+        else:
+            return None
+        self.count -= 1
         return cur.data
     
-    # 탐색
-    def search(self, data):
-        idx = 0
+    # Search
+    # Search Data to Front
+    def search_front(self, node):
         cur = self.head
+        idx = 0
 
         while cur:
-            if cur.data == data:
-                print('{} 번째 위치해있습니다'.format(idx+1))
-                return None
+            if cur.data == node.data:
+                print("Node[{}] exist index {} in Doubly Linked List".format(node.data, idx+1))
+                return idx
             else:
-                idx += 1
                 cur = cur.next
-        return
+                idx += 1
+        return None
 
-    # 길이
-    def length(self):
-        return self.count
-      
-    # 출력
-    def printlist(self):
+    # Search Data to End
+    def search_end(self, node):
+        cur = self.tail
+        idx = 0
+
+        while cur:
+            if cur.data == node.data:
+                print("Node[{}] exist index {} in Doubly Linked List".format(node.data, self.length()-idx))
+                return idx
+            else:
+                cur = cur.prev
+                idx += 1
+        return None
+
+    # Print list
+    def print_list(self):
         cur = self.head
         strs = ''
         prevn = None
@@ -64,32 +92,34 @@ class LinkedList:
                 strs += '<->'
             prevn = cur
             cur = cur.next
-
         print(strs)
-      
-      
-    # 원하는 위치에 추가
-    def insert_idxdata(self, idx, node):
+
+    # Length
+    def length(self):
+        return self.count
+
+    # Insert to desired index
+    def insert_idx_node(self, idx, node):
         prevn = None
-        nextn = None
+        cur_i = 1
 
         if idx == 1:
             if self.head:
-                nextn = self.head
+                cur = self.head
+                cur.prev = node
+                node.next = cur
+                node.prev = None
                 self.head = node
-                self.head.next = nextn
-                node.prev = prevn
             else:
                 self.head = node
         else:
-            cur_i = 1
             cur = self.head
             while cur_i < idx:
                 if cur:
                     prevn = cur
                     cur = cur.next
                 else:
-                    break
+                    return None
                 cur_i += 1
 
             if cur_i == idx:
@@ -99,9 +129,12 @@ class LinkedList:
                 if cur:
                     cur.prev = node
             else:
-                return
-    # 원하는 위치에 삭제
-    def remove_idxdata(self, idx):
+                return None
+        self.count += 1
+        return
+
+    # remove to desired index
+    def remove_idx_node(self, idx):
         prevn = None
         nextn = None
         cur_i = 1
@@ -110,35 +143,21 @@ class LinkedList:
             if self.head:
                 self.head = self.head.next
                 self.head.prev = None
-                return None
         else:
-            return None
-            
-        cur = self.head
-        while cur_i < idx:
-            if cur.next:
-                
-                prevn = cur
-                cur = cur.next
-                nextn = cur.next
-            else:
-                return 
-            cur_i += 1
+            cur = self.head
+            while cur_i < idx:
+                if cur.next:
+                    prevn = cur
+                    cur = cur.next
+                    nextn = cur.next
+                else:
+                    return
+                cur_i += 1
 
-        if cur_i == idx:
-            if nextn:
-                nextn.prev = prevn
-            prev.next = nextn
-            
+            if cur_i == idx:
+                if nextn:
+                    nextn.prev = prevn
+                prevn.next = nextn
+                return
         self.count -= 1
-        return None
-  
-
-ll = LinkedList()
-ll.add(Node(3))
-ll.add(Node(4))
-ll.add(Node(5))
-ll.add(Node(6))
-
-ll.printlist()
-print(ll.length())
+        return

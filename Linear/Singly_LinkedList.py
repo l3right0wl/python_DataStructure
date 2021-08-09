@@ -1,6 +1,5 @@
 # Linked List
 # Singly Linked List 구현
-# Python의 경우 list 기본 자료형에 linked list 기능이 함께 포함되어 있지만 직접 구현했다.
 # 시작 위치를 1로 잡음
 
 # Node 클래스 선언
@@ -29,6 +28,7 @@ class LinkedList:
     # 추출 (마지막 값)
     def pop(self):
         cur = self.head
+
         while cur.next is not None:
             cur = cur.next
         return cur.data
@@ -37,6 +37,7 @@ class LinkedList:
     def search(self, node):
         idx = 0
         cur = self.head
+
         while cur:
             if cur.data == node.data:
                 print("{} 번째 위치해있습니다".format(idx+1))
@@ -47,9 +48,10 @@ class LinkedList:
         return None
 
     # 출력
-    def printlist(self):
+    def printList(self):
         strs = ''
         cur = self.head
+
         while cur:
             strs += str(cur.data)
             if cur.next:
