@@ -1,8 +1,9 @@
 # Linked List
 # Singly Linked List 구현
-# 시작 위치를 1로 잡음
+# Set start to 0
 
-# Node 클래스 선언
+# Declare node class
+# The node has 1 data and 1 pointer
 class Node:
     def __init__(self, data):
         self.data = data

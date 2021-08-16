@@ -133,7 +133,7 @@ class LinkedList:
         self.count += 1
         return
 
-    # remove to desired index
+    # Remove to desired index
     def remove_idx_node(self, idx):
         prevn = None
         nextn = None
