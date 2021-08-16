@@ -9,27 +9,75 @@ class Node:
         self.data = data
         self.next = None
 
+# Declare Circular Linked List Class
 class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.count = 0
 
-    def append(self):
-        pass
+    def append(self, node):
+        self.insert(node, self.length())
+        return
 
-    def insert(self, idx, data):
-        pass
+    def insert(self, node, idx):
 
-    def pop(self):
+        if idx == 1:
+            if self.head:
+                curn = self.head.next
+                cur_i = 1
+
+                while curn.next != self.head:
+                    curn = curn.next
+                    cur_i += 1
+
+                curn.next = node
+                node.next = self.head
+                self.head = node
+                return
+            else:
+                self.head = node
+                self.tail = node
+                self.head.next = self.head
+                return
+        else:
+            cur_i = 2
+            prevn = self.head
+            curn = self.head.next
+
+            while curn.next != self.head:
+                if cur_i == idx:
+                    prevn.next = node
+                    node.next = curn
+                    return
+                prevn = curn
+                curn = curn.next
+                cur_i += 1
+
+            if cur_i == idx:
+                prevn = curn
+                curn = curn.next
+                prevn.next = node
+                node.next = curn
+                return
+        return
+
         pass
 
     def remove(self, idx):
         pass
 
     def index(self, idx):
-        pass
+        curn = self.head
+        cur_i = 1
+
+        while cur_i != idx:
+            curn = curn.next
+            cur_i += 1
+
+        return curn
 
     def length(self):
-        pass
+        return self.count
 
 
