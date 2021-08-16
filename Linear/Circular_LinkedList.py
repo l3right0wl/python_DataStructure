@@ -13,7 +13,6 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.tail = None
         self.count = 0
 
     def append(self, node):
@@ -37,7 +36,6 @@ class LinkedList:
                 return
             else:
                 self.head = node
-                self.tail = node
                 self.head.next = self.head
                 return
         else:
@@ -65,6 +63,32 @@ class LinkedList:
         pass
 
     def remove(self, idx):
+        if idx  == 0:
+            if self.head:
+                if self.head.next:
+                    curn = self.head.next
+                    while curn.next != self.head:
+                        curn = curn.next
+                    curn.next = self.head.next
+                    self.head = self.head.next
+                    return
+                else:
+                    self.head = None
+                    return
+        else:
+            prevn = self.head
+            curn = self.head.next
+            cur_i = 1
+            while curn != self.head:
+                if cur_i == idx:
+                    nextn = curn.next
+                    prevn.next = nextn
+                    return
+                prevn = curn
+                curn = curn.next
+                cur_i += 1
+            return
+
         pass
 
     def index(self, idx):
